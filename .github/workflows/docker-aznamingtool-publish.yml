@@ -24,6 +24,10 @@ jobs:
           sudo apt-get install unzip -y
           wget https://codeload.github.com/microsoft/CloudAdoptionFramework/zip/refs/heads/master -O master.zip
           unzip master.zip
+      - 
+        name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
