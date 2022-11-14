@@ -15,12 +15,11 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      # -
-      #   name: Get current date
-      #   id: date
-      #   run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       - name: Set output
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Checkout
+        uses: actions/checkout@v3
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
