@@ -1,0 +1,23 @@
+FROM linuxserver/code-server:latest
+
+# install dependencies
+RUN apt-get update && apt-get install -y libicu-dev ca-certificates curl apt-transport-https lsb-release gnupg
+
+# install Azure CLI
+RUN echo deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main | tee /etc/apt/sources.list.d/azure-cli.list
+RUN curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
+RUN apt-get update && apt-get install -y azure-cli && rm -rf /var/lib/apt/lists/*
+
+# install Azure CLI Bicep module and Visual Studio Code Bicep extension
+RUN az bicep install
+RUN curl -Lo /tmp/vscode-bicep.vsix https://github.com/Azure/bicep/releases/download/v$(curl -s https://api.github.com/repos/Azure/bicep/releases/latest | grep "tag_name"
+ | cut -d'v' -f2 | cut -d'"' -f1)/vscode-bicep.vsix
+
+# workaround because RUN /usr/local/bin/install-extension /config/vscode-bicep.vsix doesn't work
+RUN /app/code-server/bin/code-server --install-extension /tmp/vscode-bicep.vsix && rm /tmp/vscode-bicep.vsix
+RUN mkdir /config/extensions
+RUN mv /config/.local/share/code-server/extensions/* /config/extensions/
+
+# adjust command prompt for root and the main user - see https://github.com/linuxserver/docker-openvscode-server/blob/61efb20cae1fd9562dc66c7b255f9b8cb23df74f/root/etc/cont-init.d/30-config#L21
+RUN sed -i "s/    PS1.*/    PS1=\'\\\\w\\\\$ \'/g" /root/.bashrc
+
