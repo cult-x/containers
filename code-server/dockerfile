@@ -10,8 +10,7 @@ RUN apt-get update && apt-get install -y azure-cli && rm -rf /var/lib/apt/lists/
 
 # install Azure CLI Bicep module and Visual Studio Code Bicep extension
 RUN az bicep install
-RUN curl -Lo /tmp/vscode-bicep.vsix https://github.com/Azure/bicep/releases/download/v$(curl -s https://api.github.com/repos/Azure/bicep/releases/latest | grep "tag_name"
- | cut -d'v' -f2 | cut -d'"' -f1)/vscode-bicep.vsix
+RUN curl -Lo /tmp/vscode-bicep.vsix https://github.com/Azure/bicep/releases/download/v$(curl -s https://api.github.com/repos/Azure/bicep/releases/latest | grep "tag_name" | cut -d'v' -f2 | cut -d'"' -f1)/vscode-bicep.vsix
 
 # workaround because RUN /usr/local/bin/install-extension /config/vscode-bicep.vsix doesn't work
 RUN /app/code-server/bin/code-server --install-extension /tmp/vscode-bicep.vsix && rm /tmp/vscode-bicep.vsix
