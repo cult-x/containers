@@ -20,7 +20,7 @@ jobs:
       #   id: date
       #   run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       - name: Set output
-        run: echo "date=date::$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
