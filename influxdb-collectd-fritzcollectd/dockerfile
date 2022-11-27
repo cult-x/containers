@@ -1,0 +1,28 @@
+FROM debian:stretch-slim
+
+# load latest package info
+RUN apt-get update
+
+# install collectd
+RUN apt-get install --no-install-recommends -y collectd
+
+# install influxdb
+RUN apt-get install -y influxdb
+
+# install python
+RUN apt-get install --no-install-recommends -y \
+    libpython2.7 \
+    python-setuptools \
+    python-wheel \
+    python-pip
+
+# install fritzbox plugin
+RUN pip install fritzconnection
+RUN pip install requests
+RUN pip install fritzcollectd
+
+# starting services
+RUN systemctl restart influxdb
+RUN systemctl restart collectd
+
+CMD ["collectd", "-f"]
