@@ -1,0 +1,45 @@
+name: docker-jsoncrack
+
+# action execution section
+on:
+  schedule:
+    - cron: "24 7 1 * *"
+  workflow_dispatch: # adding the workflow_dispatch so it can be triggered manually
+    inputs:
+      uselessinput:
+        description: "Just some useless input, ignore it."
+        required: false
+        default: "lorem ipsum"
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set output
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+
+      - name: Get repository files and unzip them
+        run: |
+          sudo apt-get install unzip -y
+          wget https://codeload.github.com/AykutSarac/jsoncrack.com/zip/refs/heads/main -O main.zip
+          unzip main.zip
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          context: ./jsoncrack.com-main
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY_JSONCRACK }}:latest,${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY_JSONCRACK }}:${{ env.date }}
