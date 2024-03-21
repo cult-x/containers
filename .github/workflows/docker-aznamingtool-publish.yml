@@ -22,8 +22,8 @@ jobs:
         name: Get repository files and unzip them
         run: |
           sudo apt-get install unzip -y
-          wget https://codeload.github.com/microsoft/CloudAdoptionFramework/zip/refs/heads/master -O master.zip
-          unzip master.zip
+          wget https://codeload.github.com/mspnp/AzureNamingTool/zip/refs/heads/main -O main.zip
+          unzip main.zip
       - 
         name: Get current date
         id: date
@@ -44,7 +44,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./CloudAdoptionFramework-master/ready/AzNamingTool
+          context: ./AzureNamingTool-main/src
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:latest,${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKERHUB_REPOSITORY }}:${{ steps.date.outputs.date }}
