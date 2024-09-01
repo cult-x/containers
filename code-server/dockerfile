@@ -2,14 +2,14 @@ FROM linuxserver/code-server:latest
 
 # install dependencies
 RUN apt-get update && \ 
-    apt-get install -y libicu-dev ca-certificates curl apt-transport-https lsb-release gnupg && \ 
+    apt-get install -y libicu-dev ca-certificates curl apt-transport-https lsb-release gnupg terraform && \ 
     rm -rf /var/lib/apt/lists/*
 
 # install Azure CLI and Azure bicep
-RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
-    curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-$(dpkg --print-architecture) && \
-    chmod +x bicep && \
-    mv bicep /usr/local/bin/bicep
+# RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
+#     curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-$(dpkg --print-architecture) && \
+#     chmod +x bicep && \
+#     mv bicep /usr/local/bin/bicep
 
 # Install extensions and themes
 RUN /app/code-server/bin/code-server --install-extension ms-vscode.azure-account && \
