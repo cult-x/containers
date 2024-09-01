@@ -20,22 +20,24 @@ RUN /app/code-server/bin/code-server --install-extension ms-vscode.azure-account
     /app/code-server/bin/code-server --install-extension esbenp.prettier-vscode && \
     /app/code-server/bin/code-server --install-extension redhat.vscode-yaml && \
     /app/code-server/bin/code-server --install-extension github.github-vscode-theme && \
-    /app/code-server/bin/code-server --install-extension ms-azuretools.vscode-bicep && \
     /app/code-server/bin/code-server --install-extension akamud.vscode-theme-onedark && \
-    /app/code-server/bin/code-server --install-extension josin.kusto-syntax-highlighting && \
     /app/code-server/bin/code-server --install-extension janisdd.vscode-edit-csv && \
     /app/code-server/bin/code-server --install-extension hashicorp.terraform && \
     /app/code-server/bin/code-server --install-extension 4ops.terraform && \
-    /app/code-server/bin/code-server --install-extension matheusq94.tfs && \
     /app/code-server/bin/code-server --install-extension github.vscode-github-actions && \
     /app/code-server/bin/code-server --install-extension ecmel.vscode-html-css && \
     /app/code-server/bin/code-server --install-extension zignd.html-css-class-completion && \
-    /app/code-server/bin/code-server --install-extension aykutsarac.jsoncrack-vscode && \
-    /app/code-server/bin/code-server --install-extension pkief.material-icon-theme && \
-    /app/code-server/bin/code-server --install-extension ms-vscode-remote.remote-ssh && \
-    /app/code-server/bin/code-server --install-extension ms-vscode-remote.remote-ssh-edit && \
-    /app/code-server/bin/code-server --install-extension ms-vscode.remote-explorer && \
-    /app/code-server/bin/code-server --install-extension run-at-scale.terraform-doc-snippets
+    /app/code-server/bin/code-server --install-extension pkief.material-icon-theme
+
+# Failed extensions
+    # ms-azuretools.vscode-bicep
+    # josin.kusto-syntax-highlighting
+    # matheusq94.tfs
+    # aykutsarac.jsoncrack-vscode
+    # ms-vscode-remote.remote-ssh
+    # ms-vscode-remote.remote-ssh-edit
+    # ms-vscode.remote-explorer
+    # run-at-scale.terraform-doc-sni
 
 # configure extensions
 RUN mkdir /config/extensions && \
