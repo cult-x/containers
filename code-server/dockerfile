@@ -24,7 +24,7 @@ RUN /app/code-server/bin/code-server --install-extension ms-vscode.azure-account
     /app/code-server/bin/code-server --install-extension akamud.vscode-theme-onedark && \
     /app/code-server/bin/code-server --install-extension josin.kusto-syntax-highlighting && \
     /app/code-server/bin/code-server --install-extension janisdd.vscode-edit-csv && \
-    /app/code-server/bin/code-server --install-extension hashicorp.terraform
+    /app/code-server/bin/code-server --install-extension hashicorp.terraform && \
     /app/code-server/bin/code-server --install-extension 4ops.terraform && \
     /app/code-server/bin/code-server --install-extension matheusq94.tfs && \
     /app/code-server/bin/code-server --install-extension github.vscode-github-actions && \
