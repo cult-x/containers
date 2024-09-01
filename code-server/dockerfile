@@ -13,23 +13,15 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash && \
 
 # Install extensions and themes
 RUN /app/code-server/bin/code-server --install-extension ms-vscode.azure-account && \
-    /app/code-server/bin/code-server --install-extension ms-vscode.azurecli && \
     /app/code-server/bin/code-server --install-extension ms-azuretools.vscode-docker && \
     /app/code-server/bin/code-server --install-extension yzhang.markdown-all-in-one && \
-    /app/code-server/bin/code-server --install-extension DavidAnson.vscode-markdownlint && \
+    /app/code-server/bin/code-server --install-extension davidanson.vscode-markdownlint && \
     /app/code-server/bin/code-server --install-extension ms-vscode.powershell && \
     /app/code-server/bin/code-server --install-extension esbenp.prettier-vscode && \
     /app/code-server/bin/code-server --install-extension redhat.vscode-yaml && \
-    /app/code-server/bin/code-server --install-extension GitHub.github-vscode-theme && \
-    curl -Lo /tmp/rosshamish.kuskus-kusto-syntax-highlighting.vsix https://marketplace.visualstudio.com/_apis/public/gallery/publishers/rosshamish/vsextensions/kuskus-kusto-syntax-highlighting/latest/vspackage && \
-    curl -Lo /tmp/bencoleman.armview.vsix https://marketplace.visualstudio.com/_apis/public/gallery/publishers/bencoleman/vsextensions/armview/0.4.6/vspackage && \
-    curl -Lo /tmp/azurepolicy.azurepolicyextension.vsix https://marketplace.visualstudio.com/_apis/public/gallery/publishers/AzurePolicy/vsextensions/azurepolicyextension/0.2.2/vspackage && \
-    curl -Lo /tmp/ms-azuretools.vscode-bicep.vsix https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-azuretools/vsextensions/vscode-bicep/0.12.40/vspackage && \
-    /app/code-server/bin/code-server --install-extension /tmp/rosshamish.kuskus-kusto-syntax-highlighting.vsix  && \
-    /app/code-server/bin/code-server --install-extension /tmp/bencoleman.armview.vsix && \
-    /app/code-server/bin/code-server --install-extension /tmp/azurepolicy.azurepolicyextension.vsix  && \
-    /app/code-server/bin/code-server --install-extension /tmp/ms-azuretools.vscode-bicep.vsix  && \
-    rm /tmp/*.vsix && \
+    /app/code-server/bin/code-server --install-extension github.github-vscode-theme && \
+    /app/code-server/bin/code-server --install-extension rosshamish.kuskus-kusto-syntax-highlighting && \
+    /app/code-server/bin/code-server --install-extension ms-azuretools.vscode-bicep && \
     mkdir /config/extensions && \
     mv /config/.local/share/code-server/extensions/* /config/extensions/
 
