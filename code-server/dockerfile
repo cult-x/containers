@@ -30,12 +30,12 @@ RUN /app/code-server/bin/code-server --install-extension ms-vscode.azure-account
     /app/code-server/bin/code-server --install-extension github.vscode-github-actions && \
     /app/code-server/bin/code-server --install-extension ecmel.vscode-html-css && \
     /app/code-server/bin/code-server --install-extension zignd.html-css-class-completion && \
-    /app/code-server/bin/code-server --install-extension aykutsarac.jsoncrack-vscode
+    /app/code-server/bin/code-server --install-extension aykutsarac.jsoncrack-vscode && \
     /app/code-server/bin/code-server --install-extension pkief.material-icon-theme && \
     /app/code-server/bin/code-server --install-extension ms-vscode-remote.remote-ssh && \
     /app/code-server/bin/code-server --install-extension ms-vscode-remote.remote-ssh-edit && \
     /app/code-server/bin/code-server --install-extension ms-vscode.remote-explorer && \
-    /app/code-server/bin/code-server --install-extension run-at-scale.terraform-doc-snippets &&
+    /app/code-server/bin/code-server --install-extension run-at-scale.terraform-doc-snippets
 
 # configure extensions
 RUN mkdir /config/extensions && \
