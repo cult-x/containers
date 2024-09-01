@@ -4,12 +4,8 @@ name: docker-codeserver
 on:
   schedule:
     - cron: "24 7 1 * *"
-  workflow_dispatch: # adding the workflow_dispatch so it can be triggered manually
-    inputs:
-      uselessinput:
-        description: "Just some useless input, ignore it."
-        required: false
-        default: "lorem ipsum"
+  # requirement for manual execution
+  workflow_dispatch:
 
 jobs:
   docker:
